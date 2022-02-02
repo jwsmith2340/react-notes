@@ -1,0 +1,126 @@
+// Variables
+
+$maincolor: black;
+$contrastcolor: white;
+
+//Mixins
+@mixin white-text-black-bg {
+    color: $contrastcolor;
+    background-color: $maincolor;
+}
+
+@mixin black-test-white-bg {
+    color: $maincolor;
+    background-color: $contrastcolor;
+}
+
+/* 11) So, what is going on here? Well, up top we have variables. Why assign
+colors to a color name? Well, I don't really know, but maybe there's a good 
+reason. Anyway, single values stored in a single variable are called... 
+variables! You guessed it! 
+
+Next up we have Mixins. Mixins are kind of cool. They are basically variables
+as well, but they contain more oompf. We can set background colors, text size, 
+whatever really. So, if you have multiple components that you want to be 
+styled in similar ways, using Mixins could be your jam. Think of them as packages
+of multiple variables that we can use. You might have 10 different styling
+components inside a single mixin, and if you want to use exactly those styling
+components in a bunch of different jsx components, well, boy that's just very
+convenient, isn't it?
+
+Last up, we have what looks like plain jane CSS stuff. Except, notice that 
+we have elements nested within other elements. This is just a convenient 
+Sass way of stringing together components that live within one another to
+make your organization a little nicer. By doing this, we don't need to give 
+every single thing an ID or className, we can just nest. Kind of nice. Anyway, 
+this is called Sass, Syntactically Awesome Style Sheets, and here is the main
+documentation: https://sass-lang.com/documentation 
+
+Now that we're done with the Sass rundown, let's get back to business and head
+over to Main.js << */
+
+//Header
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+nav {
+    @include white-text-black-bg;
+    display: flex;
+    justify-content: space-between;
+
+
+    a {
+        @include white-text-black-bg;
+        text-decoration: none;
+        margin: auto 5px;
+
+        div {
+            margin: 10px;
+            font-size: larger;
+        }
+    }
+    ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+
+        img {
+            height: 30px;
+            width: 30px;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+        
+        li {
+            margin-right: 1.2rem;
+            cursor: pointer;
+            font-weight: 700;   
+        }
+
+        li:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
+// Form 
+
+section, 
+div {
+    form{
+        input {
+            @include white-text-black-bg();
+            padding: 10px;
+            font-size: 1.1em;
+            margin: 10px;
+
+            &[type="submit"]:hover {
+                @include black-test-white-bg();
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+button#delete {
+    @include white-text-black-bg();
+    display: block;
+    margin: auto;
+    font-size: 1.3em;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+img {
+    height: 300px;
+    width: 300px;
+    border-radius: 90px;
+    object-fit: cover;
+}
